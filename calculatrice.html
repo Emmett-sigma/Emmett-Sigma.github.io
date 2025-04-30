@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Inscription</title>
+</head>
+<body>
+  <!--Calculatrice  -->
+  <form>
+    <h1>Calculatrice</h1>
+    <!-- textbox pour le nombre 1 et le nombre 2 -->
+    <label for="txtNombre1">Nombre 1:</label>
+    <input type="text" id="txtNombre1">
+    <br><br>
+    <label for="txtNombre2">Nombre 2:</label>
+    <input type="text" id="txtNombre2">
+    <br><br>
+    <!-- bouton radios pour choisir l'opération à faire -->
+    <label for="radOperations">Opération:</label>
+    <input type="radio" name="operation" value="/">/
+    <input type="radio" name="operation" value="-">-
+    <input type="radio" name="operation" value="+" checked>+
+    <input type="radio" name="operation" value="*">*
+    <input type="radio" name="operation" value="%">%
+    <input type="radio" name="operation" value="**">**
+    <br><br>
+    <!-- bouton pour soumettre les nombres pour le calcul -->
+    <input type="button" id="btnCalcul" onclick="calculModulo()"  value="Calculer le Modulo">
+    <!-- Création d'une section pour l'affichage des résultats -->
+    <div id="divAffiche">
+    </div>
+    <script>
+        function calculModulo() {
+            //Chercher les données pour les calculs
+            var nombre1 = parseInt(document.getElementById("txtNombre1").value);
+            var nombre2 = parseInt(document.getElementById("txtNombre2").value);
+            var affiche = document.getElementById("divAffiche");
+            var radioOperation = document.getElementsByName("operation");
+            var operation = "";
+              for (var i = 0; i < radioOperation.length; i++) {
+                if (radioOperation[i].checked) {
+                     operation = radioOperation[i].value;
+                }
+              }
+            //calculer le modulo
+            var calculation = "<br><br>" + nombre1 + operation + nombre2 + " = "
+            switch (operation) {
+              case "/":
+                calculation = calculation + (nombre1 / nombre2);
+                break;
+              case "-":
+                calculation = calculation + (nombre1 - nombre2);
+                break;
+              case "+":
+                calculation = calculation + (nombre1 + nombre2);
+                break;
+              case "*":
+                calculation = calculation + (nombre1 * nombre2);
+                break;
+              case "%":
+                calculation = calculation + (nombre1 % nombre2);
+                break;
+              case "**":
+                calculation = calculation + (nombre1 ** nombre2);
+                break;
+            }
+            //Afficher le calcul sur la page web
+            affiche.innerHTML = calculation;
+        }
+    </script>
+  </form>
+</body>
+</html>
